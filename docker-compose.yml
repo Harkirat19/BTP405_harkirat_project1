@@ -1,0 +1,29 @@
+version: "3"
+services:
+  db:
+    container_name: harkiratproject1db
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "harkiratpass"
+    networks:
+      - phr_network
+  app:
+    container_name: harkiratproject1
+    build: ./
+    ports:
+      - "8080:8080"
+    networks:
+      - phr_network
+    depends_on:
+      - db
+    environment:
+      SQL_HOST: "db"
+      SQL_DATABASE: "harkiratproject"
+      SQL_USER: "root"
+      SQL_PASSWORD: "harkiratpass"
+
+networks:
+  phr_network:
+    driver: bridge
