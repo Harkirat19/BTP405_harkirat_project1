@@ -1,8 +1,9 @@
-import http.server
 import json
+import hashlib
 import mysql.connector
 import cgi
-import hashlib
+import http.server
+
 
 conn = mysql.connector.connect(
     host='localhost',
